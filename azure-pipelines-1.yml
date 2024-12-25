@@ -6,18 +6,21 @@
 trigger:none
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage:'windows-latest'
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-  stage:
-  - task: Build
+  stages:
+  -stage: Build
   displayName: 'Build stage'
   jobs:
   -job:Buildjob
+  displayName:'Build Job'
+
+  steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
